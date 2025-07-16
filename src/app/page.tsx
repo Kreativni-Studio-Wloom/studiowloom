@@ -441,7 +441,7 @@ export default function Home() {
               <h3 className="text-xl font-semibold text-fuchsia-800 mb-4">Sociální sítě</h3>
               <div className="flex justify-center gap-4">
                 <a 
-                  href="https://instagram.com/wloom.cz" 
+                  href="https://www.instagram.com/wloom.eu" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-fuchsia-600 transition-colors"

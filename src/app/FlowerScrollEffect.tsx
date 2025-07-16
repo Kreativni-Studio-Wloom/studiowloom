@@ -1,24 +1,29 @@
 "use client";
 import { useEffect, useRef } from "react";
 
+function lerp(a: number, b: number, t: number) {
+  return a + (b - a) * t;
+}
+
 export default function FlowerScrollEffect() {
   const flowerRef = useRef<HTMLImageElement>(null);
   const animationFrame = useRef<number | null>(null);
+  // Uložíme aktuální hodnoty, které budou animované
+  const current = useRef({ scale: 1, rotate: -10 });
 
   useEffect(() => {
-    let lastProgress = -1;
     const update = () => {
       const scrollY = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? scrollY / docHeight : 0;
-      // Pokud se progress změnil, aktualizuj transformaci
-      if (progress !== lastProgress) {
-        const scale = 1 + progress * 1.0;
-        const rotate = -10 + progress * 30;
-        if (flowerRef.current) {
-          flowerRef.current.style.transform = `scale(${scale}) rotate(${rotate}deg)`;
-        }
-        lastProgress = progress;
+      // Cílové hodnoty
+      const targetScale = 1 + progress * 1.0;
+      const targetRotate = -10 + progress * 30;
+      // Plynulý přechod (lerp)
+      current.current.scale = lerp(current.current.scale, targetScale, 0.15);
+      current.current.rotate = lerp(current.current.rotate, targetRotate, 0.15);
+      if (flowerRef.current) {
+        flowerRef.current.style.transform = `scale(${current.current.scale}) rotate(${current.current.rotate}deg)`;
       }
       animationFrame.current = requestAnimationFrame(update);
     };
@@ -42,7 +47,7 @@ export default function FlowerScrollEffect() {
         opacity: 0.7,
         zIndex: 50,
         pointerEvents: "none",
-        transition: "transform 0.2s cubic-bezier(0.4,0,0.2,1)",
+        transition: "none",
       }}
     />
   );

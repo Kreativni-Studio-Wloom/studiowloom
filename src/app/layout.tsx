@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Wloom - Vaše vize. Váš web. Váš rozkvět.",
+  title: "Kreativní Studio Wloom",
   description: "Moderní webové stránky a aplikace na míru pro váš business.",
   icons: {
     icon: '/flower.svg',
