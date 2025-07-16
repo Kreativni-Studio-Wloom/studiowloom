@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(200,200)">
+    <!-- Okvětní lístky -->
+    <path d="M0,-100 C50,-50 50,50 0,100 C-50,50 -50,-50 0,-100" fill="#FFB6C1" opacity="0.6"/>
+    <path d="M-100,0 C-50,-50 50,-50 100,0 C50,50 -50,50 -100,0" fill="#FFB6C1" opacity="0.6"/>
+    <path d="M-70,-70 C-20,-120 20,-120 70,-70 C120,-20 120,20 70,70 C20,120 -20,120 -70,70 C-120,20 -120,-20 -70,-70" fill="#FFB6C1" opacity="0.6"/>
+    <!-- Střed květu -->
+    <circle cx="0" cy="0" r="30" fill="#FFD700"/>
+  </g>
+</svg> 
