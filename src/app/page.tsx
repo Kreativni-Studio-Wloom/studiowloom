@@ -38,6 +38,16 @@ export default function Home() {
     return () => unsub();
   }, [db]);
 
+  // Automatické zmizení úspěšné zprávy po 5 sekundách
+  useEffect(() => {
+    if (status === 'success') {
+      const timer = setTimeout(() => {
+        setStatus('idle');
+      }, 4500); // Zkrátím na 4.5s aby se exit animace stihla
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
   const handleProjectClick = (url: string) => {
     setIsLoading(true);
     setSelectedProject(url);
@@ -416,7 +426,18 @@ export default function Home() {
               {status === 'sending' ? 'Odesílám...' : 'Odeslat zprávu'}
             </motion.button>
             {status === 'success' && (
-              <div className="text-fuchsia-700 text-center mt-2 text-lg">Zpráva byla úspěšně odeslána!</div>
+              <motion.div 
+                className="text-fuchsia-700 text-center mt-2 text-lg font-bold"
+                initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 1.2, rotate: 5 }}
+                transition={{ 
+                  duration: 0.6,
+                  ease: [0.4, 0, 0.2, 1]
+                }}
+              >
+                Požadavek byl přijat, brzy Vás kontaktujeme.
+              </motion.div>
             )}
             {status === 'error' && (
               <div className="text-red-600 text-center mt-2 text-lg">{error}</div>
